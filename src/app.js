@@ -69,8 +69,6 @@ app.delete("/repositories/:id", validateRepoId, verifyIfRepoExists, (req, res) =
 
   const repoIndex = repositories.findIndex(repo => repo.id === id);
 
-  if (repoIndex === -1) return res.status(400).json({ error: 'Project ID not found.' });
-
   repositories.splice(repoIndex, 1);
 
   return res.status(204).send();
@@ -80,8 +78,6 @@ app.post("/repositories/:id/like", validateRepoId, verifyIfRepoExists, (req, res
   const { id } = req.params;
 
   const repoIndex = repositories.findIndex(repo => repo.id === id);
-
-  if (repoIndex === -1) return res.status(400).json({ error: 'Project ID not found.' });
 
   repositories[repoIndex].likes += 1;
   
